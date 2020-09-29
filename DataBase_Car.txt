@@ -1,0 +1,52 @@
+CREATE DATABASE car
+
+CREATE TABLE users(
+    
+    U_Id varchar(12) NOT NULL,
+    U_Name varchar(255) NOT NULL,
+    U_Dob varchar(20) NOT NULL,
+    U_Cont varchar(15) NOT NULL,
+    U_Add varchar(255) NOT NULL,
+    U_Nic varchar(10) NOT NULL,
+    U_Email varchar(60) NOT NULL,
+    U_Pass varchar(20) NOT NULL,
+    UNIQUE(U_Email),
+    PRIMARY KEY(U_Id)
+)
+
+
+CREATE TABLE customer(
+    C_Id varchar(20),
+    C_Name varchar(255) NOT NULL,
+    C_Cont varchar(15) NOT NULL,
+    C_Add varchar(255) NOT NULL,
+    C_NIC varchar(12) NOT NULL,
+    C_Email varchar(100) NOT NULL,
+    C_Vehicle_Type varchar(50) NOT NULL,
+    C_Vehicle_Num  varchar(25) NOT NULL,
+    UNIQUE(C_Vehicle_Num),
+    UNIQUE(C_Email),
+    PRIMARY KEY(C_Id)
+)
+
+
+CREATE TABLE area(
+    P_ID varchar(15) NOT NULL,
+    Flr int(1) NOT NULL,
+    Available int(1) NOT NULL,
+    PRIMARY KEY(P_ID)
+)
+
+
+
+CREATE TABLE park(
+    Park_Id int(10) AUTO_INCREMENT,
+    C_Id varchar(20) NOT NULL,
+    P_ID varchar(20) NOT NULL,
+    Park_Date Date NOT NULL,
+    Park_In_Time time NOT NULL,
+    Park_Out_Time varchar(20) NOT NULL,
+    PRIMARY KEY(Park_Id),
+    FOREIGN KEY(C_Id) REFERENCES customer(C_Id),
+    FOREIGN KEY(P_ID) REFERENCES area(P_ID)
+)
